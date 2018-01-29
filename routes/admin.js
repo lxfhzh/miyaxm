@@ -73,18 +73,4 @@ router.post('/uploadImg', function (req, res) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module.exports = router;

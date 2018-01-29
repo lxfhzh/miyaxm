@@ -17,25 +17,32 @@ router.get('/getListData', function(req, res, next) {
   })
   
 });
-
-//商品详情
-router.get('/getDetailData', function(req, res, next) {
-  console.log(req.query)
-  myPro.getDetailData(req.query,function(detailDate){
-    console.log("success")
-    res.send(detailDate)
-  })
-  
-});
-
-//轮播图
+//轮播图数据
 router.get('/getLunboData', function(req, res, next) {
+
     console.log(req.query)
     myPro.getLunboData(req.query,function(lunboData){
-        console.log("success")
-        res.send(lunboData)
+        res.send(JSON.stringify(lunboData))
     })
 
+});
+//登录注册数据
+router.get('/getUserData', function(req, res, next) {
+
+    console.log(req.query)
+    myPro.getUserData(req.query,function(userData){
+        res.send(JSON.stringify(userData))
+    })
+
+});
+//商品详情
+router.get('/getDetailData', function(req, res, next) {
+  console.log(req.query)//{pid:'2'}
+  myPro.getDetailData(req.query,function(detailDate){//根据{pid:'2'}查询数据库
+    console.log("success")
+    res.send(detailDate)//将{pid:'2',p_name:'小黄‘,...}发送给前端
+  })
+  
 });
 
 //首页商品

@@ -10,8 +10,10 @@ var category = require('./routes/category');
 var product = require('./routes/product');
 var cart = require('./routes/cart');
 var user = require('./routes/user');
+var users = require('./routes/users');
 var order = require('./routes/order');
 var admin = require('./routes/admin');
+var index = require('./routes/index');
 
 var app = express();
 
@@ -29,7 +31,7 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 //使用 session插件
 app.use(session({
@@ -47,7 +49,9 @@ app.use('/api/cate', category);
 app.use('/api/product', product);
 app.use('/api/cart', cart);
 app.use('/api/user', user);
+app.use('/api/users', users);
 app.use('/api/order', order);
+app.use('/api', index);
 
 app.use('/admin', admin);
 

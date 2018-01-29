@@ -38,6 +38,18 @@ class ClassModel{
             })
         })
     }
+    add({cate_name,parent_id=0,cate_img=""},callback){
+        pool.getConnection(function(err,connection){
+            if(err) throw err;
+            parent_id = parent_id ||0 
+            console.log(`insert into category(cate_name,parent_id,cate_img) values('${cate_name}',${parent_id},${cate_img}) `)
+            connection.query(`insert into category(cate_name,parent_id,cate_img) values('${cate_name}',${parent_id},'${cate_img}') `,function(err){
+                callback(err)
+                //释放连接
+                connection.release()    
+            })
+        })
+    }
 }
 
 module.exports = ClassModel
