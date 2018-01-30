@@ -38,13 +38,21 @@ router.get('/getUserData', function(req, res, next) {
 //商品详情
 router.get('/getDetailData', function(req, res, next) {
   console.log(req.query)//{pid:'2'}
-  myPro.getDetailData(req.query,function(detailDate){//根据{pid:'2'}查询数据库
+  myPro.getDetailData(req.query,function(detailData){//根据{pid:'2'}查询数据库
     console.log("success")
-    res.send(detailDate)//将{pid:'2',p_name:'小黄‘,...}发送给前端
+    res.send(detailData)//将{pid:'2',p_name:'小黄‘,...}发送给前端
   })
   
 });
+//购物车列表数据接口
+/*router.get('/cunGouwuche', function(req, res, next) {
+    console.log(req.query)//{pid:'2'}
+    myPro.cunGouwuche(req.query,function(gouwucheData){//根据{pid:'2'}查询数据库
+        console.log("success")
+        res.send(gouwucheData)//将{pid:'2',p_name:'小黄‘,...}发送给前端
+    })
 
+});*/
 //首页商品
 router.get('/getHomeData', function(req, res, next) {
   var listData = [

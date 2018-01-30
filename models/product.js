@@ -38,6 +38,7 @@ class Product{
             })
         })
     }
+    //获取详情数据
     getDetailData({pid},callback){
         pool.getConnection((err,connection)=>{
              if(err) throw err;
@@ -73,6 +74,32 @@ class Product{
         })
     })
     }
+    //获取购物车列表数据
+    /*cunGouwuche({pid,uid},callback){
+        pool.getConnection((err,connection)=>{
+            if(err) throw err
+            // 先看看  表里面  有没有添加过 当前的商品
+            connection.query(`select * from cart where uid=${uid} and pid=${pid}`,(err,results)=>{
+            if(err) throw err
+            //results =>[] 空没有当前商品   ;  [{pid,card_id...}]有
+            if(results.length){
+            //数量累加
+            var newNumber = results[0].number+1
+            connection.query(`update cart set number=${newNumber} where uid=${uid} and pid=${pid}`,(err)=>{
+                callback(err)
+                connection.release() //再回调里面 释放连接
+        })
+        }else{
+            connection.query(`insert into cart(uid,pid,number) values(${uid},${pid},1)`,(err)=>{
+                callback(err)
+                connection.release() //再回调里面 释放连接
+        })
+        }
+
+    })
+    })
+    }*/
+
 
     add({p_name,cate_id,price,total_number,img_url,img_list},callback){
          img_list = JSON.stringify(img_list)
